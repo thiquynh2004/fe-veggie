@@ -5,7 +5,7 @@ export default function MyCard(props) {
   return (
     <Col md={4} xs={12}>
       <Card style={{ width: "18rem" }}>
-        <Card.Img src={props.product.image} fluid />
+        <Card.Img src={props.product.image} Fluid />
         <Card.Body>
           <Card.Title>{props.product.name}</Card.Title>
           <Card.Text>{props.product.description}</Card.Text>

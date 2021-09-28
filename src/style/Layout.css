@@ -1,4 +1,4 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -9,7 +9,7 @@
 }
 .header {
    background: #f2f3ee;
-   /* color: black; */
+   
    font-size: 15px;
     font-weight: 700;
     line-height: normal;
@@ -19,7 +19,6 @@
     top: 0;
     left: 0;
     right: 0;
-    /* background-color: #fff; */
     z-index: 8;
     width: 100%;
 
@@ -35,4 +34,5 @@
 }
 .nav-link {
     color: black;
-}
+} 
+ 

@@ -1,0 +1,15 @@
+.login{
+    height: 100vh;
+    width: 100vw;
+    /* background:rgb(237, 237, 237) url("../Assets/Image/backgroundLogin.png") no-repeat fixed top right;  */
+    background-size:auto 100%;
+}
+.backgroundLogin{
+    width: 100%;
+}
+.mp3:before, .mp3:after {
+    background-color: rgba(0,0,0,0.35);
+    content: '';
+    height: 1px;
+    width: 45%;
+}

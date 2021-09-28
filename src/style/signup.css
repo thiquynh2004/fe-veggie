@@ -1,0 +1,10 @@
+.signup{
+    display: flex;
+     height:100vh;
+      font-size: 14px;
+    line-height: 1.8;
+    color: #222;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    background-color: rgba(41, 119, 201, 0.5);
+}

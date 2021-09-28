@@ -2,13 +2,19 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import Apis, { endpoints } from '../configs/Apis'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import Apis, { endpoints } from '../configs/Apis';
 import '../style/Layout.css'
+import { useDispatch, useSelector } from "react-redux";
+import cookies from 'react-cookies';
+import { logoutUser } from "../ActionCreators/UserCreators";
 
 export default function Header() {
   let [categories, setCategories] = useState([])
+  const user = useSelector(state => state.user.user)
+  const dispatch = useDispatch()
+
 
   useEffect(async () => {
     try {
@@ -18,8 +24,24 @@ export default function Header() {
     } catch (error) {
       console.error(error)
       
-    }
-  }, []);
+    };
+  }, [])
+
+  const logout = (event) => {
+      event.preventDefault()
+      
+      cookies.remove("access_token")
+      cookies.remove("user")
+      dispatch(logoutUser())
+  }
+
+  let path = <Nav.Link href="/login">Đăng Nhập</Nav.Link>
+  if(user !=null && user !== undefined) {
+    path = <>
+    <Nav.Link href="/">{user.username}</Nav.Link>
+    <Nav.Link onClick={logout}>Đăng xuất</Nav.Link>
+    </>
+  }
 
   return (
     <div className="header">
@@ -37,6 +59,8 @@ export default function Header() {
             <Nav.Link href="/">Liên Hệ</Nav.Link>
             <Nav.Link href="/products">Sản Phẩm</Nav.Link>
             </Nav>
+
+
           <Form className="d-flex">
             <FormControl
               type="search"
@@ -49,8 +73,9 @@ export default function Header() {
           <FontAwesomeIcon icon={faShoppingCart} />
           
           <Nav>
-            <Nav.Link href="/login">Đăng nhập</Nav.Link>
+            {path}
             <Nav.Link href="/signup">Đăng Kí</Nav.Link>
+            
             
             </Nav>
             

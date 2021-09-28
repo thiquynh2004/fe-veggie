@@ -19,7 +19,10 @@ export default function Body() {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/products" component={Products} />
       </Switch>
-      <Footer />
+
+      
+      <Footer /> 
     </BrowserRouter>
+    
   );
 }
