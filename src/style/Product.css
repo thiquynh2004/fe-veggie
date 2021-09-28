@@ -1,0 +1,29 @@
+img.card-img {
+    width: 260px;
+    height:156px;
+}
+.col-md-3.col-12 {
+    margin-bottom: 20px;
+}
+.p.card-text {
+    font-size: 16px !important;
+}
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: chocolate;
+}
+
+.carousel-caption {
+    bottom: 13.25rem !important;
+    color: black !important;
+    right: 52% !important;
+}
+h3 {
+    font-size: 40px !important;
+    font-weight: bold !important;
+}
+/* p {
+    font-size: 20px !important; 
+} */
+h6.list-footer {
+    display: inline;
+}
