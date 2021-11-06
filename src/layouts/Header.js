@@ -15,12 +15,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import Apis, { endpoints } from "../configs/Apis";
 import "../style/Layout.css";
+import {useDispatch, useSelector} from "react-redux"
+import cookies from "react-cookies"
+import { logoutUser } from "../ActionCreators/UserCreators";
+import {Link} from "react-router-dom"
+
 
 export default function Header() {
   const [categories, setCategories] = useState([]);
   const [q, setQ] = useState("")
   const history = useHistory()
-
+  const user = useSelector(state =>state.user.user)
+  const dispatch = useDispatch()
+  const [cart_items, setCartItems] = useState([])
+  
   useEffect(() => {
     let loadedCategories = async () => {
       try {
@@ -37,6 +45,31 @@ export default function Header() {
     history.push(`/products?q=${q}`)
   };
 
+  const logout = (event) => {
+    event.preventDefault()
+
+    
+    cookies.remove("access_token")
+    cookies.remove("user")
+    dispatch(logoutUser())
+    history.push('/')
+  }
+  let path = <Nav.Link href="/login">Đăng nhập</Nav.Link>
+  if (user !== null && user !== undefined) {
+    path = <>
+    <Link to ="/carts">
+              <FontAwesomeIcon
+                style={{ padding: "2px 2px", fontSize: "24px"}}
+                icon={faShoppingCart}
+              />Cart
+            </Link>
+    <Nav.Link href="/profile">{user.username}</Nav.Link>
+    <Nav.Link onClick={logout}>Đăng xuất</Nav.Link>
+    
+    </>
+  }
+    
+
   return (
     <div className="header">
       <Container>
@@ -44,12 +77,12 @@ export default function Header() {
           <Navbar.Brand href="/">
             <img src="/img/logo.png" alt="logo" />
           </Navbar.Brand>
-          <NavDropdown title="Menu" id="navbarScrollingDropdown">
+          {/* <NavDropdown title="Menu" id="navbarScrollingDropdown">
             {categories.map(c => {
               let path = `/?category_id=${c.id}`;
               return <NavDropdown.Item href={path}>{c.name}</NavDropdown.Item>;
             })}
-          </NavDropdown>
+          </NavDropdown> */}
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Nav>
@@ -70,15 +103,15 @@ export default function Header() {
                 <FontAwesomeIcon icon={faSearch} />
               </Button>
             </Form>
-            <Button type="submit">
+            {/* <Link to ="/carts">
               <FontAwesomeIcon
-                style={{ padding: "2px 2px" }}
+                style={{ padding: "2px 2px", fontSize: "24px"}}
                 icon={faShoppingCart}
               />
-            </Button>
+            </Link> */}
 
             <Nav>
-              <Nav.Link href="/login">Đăng nhập</Nav.Link>
+              {path}
               <Nav.Link href="/signup">Đăng Kí</Nav.Link>
             </Nav>
           </Navbar.Collapse>

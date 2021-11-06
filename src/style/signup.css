@@ -1,0 +1,22 @@
+.signup.container {
+    position: relative;
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+h5.title-sign {
+    margin: 8px 8px;
+    text-align: center;
+    font-weight: revert;
+    color: #13a549;
+}
+.sign-form.col-md-4 {
+    border: 1px solid #13a549;
+}
+.bt-login {
+    text-align: center;
+    margin: 16px 0px;
+}
+button.btn.login.btn.btn-primary {
+    margin: 16px 0;
+
+}

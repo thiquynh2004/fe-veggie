@@ -1,29 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Apis, { endpoints } from "../configs/Apis";
-import { Card, Col, Container, Image, Row } from "react-bootstrap";
-// import Slider from "./Slider";
-import { Link } from "react-router-dom";
-// import { faKhanda } from "@fortawesome/free-solid-svg-icons";
+import {  Container, Row } from "react-bootstrap";
+// import { Link } from "react-router-dom";
 import '../style/Home.css'
-function Category(props) {
-  let path=`/categories/${props.obj.id}/products/`
-  return (
-    // trái cây nội, trái cây nhập khẩu, Rau sống, rau ăn lá, Củ rễ
-    <>
-      <Col  xs ={12} md={4} 
-      style ={{width: "calc(100%/5)"}}>
-        <Link to={path}>
-          <Card className="category">
-            <Card.Body style ={{textAlign: 'center',
-    background: '#f2f3ee'}}>
-              <Card.Title>{props.obj.name}</Card.Title>
-            </Card.Body>
-          </Card>
-        </Link>
-      </Col>
-    </>
-  );
-}
+import Category from "./Category";
+import Slider from "./Slider";
+// import ProductCategory from "../page/ProductCategory";
 
 export default function Home(props) {
   // // eslint-disable-next-line no-unused-vars
@@ -55,7 +37,8 @@ export default function Home(props) {
     loadedCategories();
   }, []);
   return (
-    
+    <>
+    <Slider/>
     <div className="categories-items">
       <Container>
         <Row >
@@ -67,14 +50,14 @@ export default function Home(props) {
                 marginTop: '24px',
                 color: '#13a549'
           }}>Danh mục các loại sản phẩm </h5>
-            {categories.map((c) => (
+            {categories.map(c=> (
               <Category obj={c} />
             ))}
         </Row>
-    
+        
         </Container>
     </div>
     
-
+</>
   );
 }
